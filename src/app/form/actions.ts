@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import { Application } from "./validation";
+import { ApplicationSchema } from "./validation";
 import { ApplicationType } from "./types";
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 2000));
@@ -11,7 +11,7 @@ export const sendApplicationForm = async (
   state: string,
   formData: FormData
 ) => {
-  const { success } = Application.safeParse({
+  const { success } = ApplicationSchema.safeParse({
     fullName: formData.get("fullName"),
     email: formData.get("email"),
     phone: formData.get("phone"),
