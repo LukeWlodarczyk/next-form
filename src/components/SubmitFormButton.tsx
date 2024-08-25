@@ -14,7 +14,11 @@ const SubmitFormButton: FC<Props> = ({
 }) => {
   const { pending } = useFormStatus();
 
-  return <button className="text-white">{pending ? loading : children}</button>;
+  return (
+    <button disabled={pending} className="text-white">
+      {pending ? loading : children}
+    </button>
+  );
 };
 
 export default SubmitFormButton;
