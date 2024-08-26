@@ -1,28 +1,18 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { parseWithZod } from "@conform-to/zod";
 
-import { ApplicationSchema } from "./validation";
-import { ApplicationType } from "./types";
+import { validateCandidateForm } from "./validation";
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 2000));
 
-export const sendApplicationForm = async (
-  state: string,
-  formData: FormData
-) => {
-  const { success } = ApplicationSchema.safeParse({
-    fullName: formData.get("fullName"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-  });
-
-  if (!success) {
-    return "Something went wrong";
-  }
-
-  console.log(success);
+export const sendApplicationForm = async (_: unknown, formData: FormData) => {
   await sleep();
-  console.log(formData);
+
+  const submission = validateCandidateForm(formData);
+
+  if (submission.status === "error") return submission.reply();
+
   redirect("/form/success");
 };
