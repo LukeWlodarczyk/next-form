@@ -11,14 +11,14 @@ import {
 import SubmitFormButton from "@/components/SubmitFormButton";
 
 import { sendApplicationForm } from "./actions";
-import { useForm } from "@conform-to/react";
-import { validateCandidateForm } from "./validation";
+import { candidateConstraint, validateCandidateForm } from "./validation";
 
 export default function Form() {
   const [lastResult, action] = useFormState(sendApplicationForm, undefined);
 
   const [form, fields] = useForm({
     lastResult,
+    constraint: candidateConstraint,
     onValidate: ({ formData }) => validateCandidateForm(formData),
     shouldValidate: "onBlur",
     shouldRevalidate: "onInput",
