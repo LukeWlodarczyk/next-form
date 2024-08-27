@@ -15,9 +15,10 @@ import { useForm } from "@conform-to/react";
 import { validateCandidateForm } from "./validation";
 
 export default function Form() {
-  const [_, action] = useFormState(sendApplicationForm, undefined);
+  const [lastResult, action] = useFormState(sendApplicationForm, undefined);
 
   const [form, fields] = useForm({
+    lastResult,
     onValidate: ({ formData }) => validateCandidateForm(formData),
     shouldValidate: "onBlur",
     shouldRevalidate: "onInput",
