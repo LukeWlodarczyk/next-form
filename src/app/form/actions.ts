@@ -1,7 +1,6 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { parseWithZod } from "@conform-to/zod";
 
 import { validateCandidateForm } from "./validation";
 
@@ -12,7 +11,7 @@ export const sendApplicationForm = async (_: unknown, formData: FormData) => {
 
   const submission = validateCandidateForm(formData);
 
-  if (submission.status === "error") return submission.reply();
+  if (submission.status !== "success") return submission.reply();
 
   redirect("/form/success");
 };
