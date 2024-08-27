@@ -47,9 +47,9 @@ export default function Form() {
         <p className="text-red-500 text-sm">{fields.email.errors}</p>
         <input
           className="mt-4 p-2 rounded"
+          placeholder="999999999"
           {...getInputProps(fields.phone, { type: "tel" })}
           {...getFieldsetProps(fields.phone)}
-          placeholder="999999999"
         />
         <p className="text-red-500 text-sm">{fields.phone.errors}</p>
         <SubmitFormButton>Submit</SubmitFormButton>
