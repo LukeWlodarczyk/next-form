@@ -9,6 +9,12 @@ const FacebookPage = dynamic(
   }
 );
 
+const FacebookVideo = dynamic(
+  () => import("@/components/FacebookVideo/FacebookVideo"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   return (
@@ -18,6 +24,7 @@ export default function Home() {
           Form
         </Link>
         <FacebookPage />
+        <FacebookVideo />
       </div>
     </main>
   );
